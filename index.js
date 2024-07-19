@@ -20,10 +20,10 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://669a53c59171a62b6037a6f5--resplendent-kitsune-5efe7a.netlify.app',
+    origin: 'https://resplendent-kitsune-5efe7a.netlify.app',
     credentials: true, // This allows the browser to include credentials in the request
   };
-  
+  app.options('*', cors(corsOptions));
   app.use(cors(corsOptions));
 
 // database connection
