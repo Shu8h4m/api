@@ -20,7 +20,7 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://669a468428818dc73a4fa073--fantastic-treacle-4d1529.netlify.app',
+    origin: 'https://669a4f4e9413771894f1e40a--inquisitive-tapioca-66bcb6.netlify.app',
     credentials: true, // This allows the browser to include credentials in the request
   };
   
