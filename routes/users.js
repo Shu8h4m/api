@@ -20,6 +20,7 @@ router.put("/:id",verifyToken ,async (req,res) =>{
             });
             res.status(200).json("Account has been updated")
         } catch (error) {
+            
             return res.status(500).json(error);
         }
     }else{
@@ -43,7 +44,7 @@ router.delete("/:id", verifyToken,async (req,res) =>{
 });
 
 //get a user
-router.get("/" ,verifyToken, async (req,res) =>{
+router.get("/" , async (req,res) =>{
     const username = req.query.username;
     const userId = req.query.userId;
     try {
@@ -51,6 +52,7 @@ router.get("/" ,verifyToken, async (req,res) =>{
         const { password, updatedAt, ...other} = user._doc;
         res.status(200).json(other);
     } catch (error) {
+        console.log(error)
         res.status(500).json(error);
     }
 });
