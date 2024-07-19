@@ -19,7 +19,12 @@ const cookieParser = require("cookie-parser");
 const app = express();
 dotenv.config();
 
-app.use(cors());
+const corsOptions = {
+    origin: 'https://669a468428818dc73a4fa073--fantastic-treacle-4d1529.netlify.app',
+    credentials: true, // This allows the browser to include credentials in the request
+  };
+  
+  app.use(cors(corsOptions));
 
 // database connection
 mongoose.connect(process.env.MONGO_URL)

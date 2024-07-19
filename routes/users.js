@@ -44,7 +44,7 @@ router.delete("/:id", verifyToken,async (req,res) =>{
 });
 
 //get a user
-router.get("/" , async (req,res) =>{
+router.get("/" ,verifyToken ,async (req,res) =>{
     const username = req.query.username;
     const userId = req.query.userId;
     try {
