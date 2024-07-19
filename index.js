@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log('Database Connected'))
     .catch((err) => console.log('Database not connected', err));
 
-app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("images", express.static(path.join(__dirname, "public/images")));
     
 //middleware
 
