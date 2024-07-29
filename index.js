@@ -21,7 +21,7 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-    origin: 'https://resplendent-kitsune-5efe7a.netlify.app',
+    origin: 'https://whimsical-bombolone-7390e6.netlify.app',
     credentials: true, // This allows the browser to include credentials in the request
   };
   app.options('*', cors(corsOptions));
