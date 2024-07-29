@@ -15,19 +15,21 @@ router.put("/:id",verifyToken ,async (req,res) =>{
             };
         };
         try {
-            const user = await User.findByIdAndUpdate(req.params.id , {
-                $set : req.body
-            });
-            res.status(200).json("Account has been updated")
-        } catch (error) {
-            
+            const updatedUser = await User.findByIdAndUpdate(
+              req.params.id,
+              {
+                $set: req.body,
+              },
+              { new: true }
+            );
+            res.status(200).json(updatedUser);
+          } catch (error) {
             return res.status(500).json(error);
-        }
+          }
     }else{
-        return res.status(403).json("You can updat eonly your account")
+        return res.status(403).json("You can update only your account")
     }
 });
-
 //delete user
 router.delete("/:id", verifyToken,async (req,res) =>{
     if(req.body.userId === req.params.id || req.body.isAdmin){
@@ -132,5 +134,19 @@ router.put("/:id/unfollow" ,verifyToken, async (req,res) =>{
         res.status(403).json("You cannot unfollow yourself")
     }
 });
+
+// get users
+
+router.get('/search', async (req, res) => {
+    const searchQuery = req.query.q;
+    try {
+      const users = await User.find({
+        username: { $regex: `^${searchQuery}`, $options: 'i' }
+      });
+      res.json(users);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
 
 module.exports = router

@@ -11,7 +11,8 @@ const messageRoute = require("./routes/messages");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
-const userRoute = require("./routes/user")
+const userRoute = require("./routes/user");
+const User = require("./models/User");
 
 const cookieParser = require("cookie-parser");
 
@@ -58,6 +59,33 @@ app.post("/api/upload", upload.single("file"), (req,res) =>{
     }
 });
 
+// Add the new routes for uploading profile and cover pictures
+
+app.post("/api/user/upload-profile-picture", upload.single("profilePicture"), async (req, res) => {
+    try {
+        const userId = req.body.userId;
+        const profilePictureUrl = `${req.file.filename}`;
+
+        const user = await User.findByIdAndUpdate(userId, { profilePicture: profilePictureUrl }, { new: true });
+
+        res.status(200).json({ message: "Profile picture updated successfully", user });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+app.post("/api/user/upload-cover-picture", upload.single("coverPicture"), async (req, res) => {
+    try {
+        const userId = req.body.userId;
+        const coverPictureUrl = `${req.file.filename}`;
+
+        const user = await User.findByIdAndUpdate(userId, { coverPicture: coverPictureUrl }, { new: true });
+
+        res.status(200).json({ message: "Cover picture updated successfully", user });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 
 app.use("/api/user",userRoute)
