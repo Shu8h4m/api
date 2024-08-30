@@ -20,7 +20,7 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-  origin: "https://tubular-crostata-98c143.netlify.app",
+  origin: "https://eloquent-trifle-cad13f.netlify.app",
   credentials: true, // This allows the browser to include credentials in the request
 };
 app.options("*", cors(corsOptions));
