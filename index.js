@@ -20,7 +20,7 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-  origin: "https://comfy-halva-df1bab.netlify.app",
+  origin: "https://capable-brioche-047cbe.netlify.app",
   credentials: true, // This allows the browser to include credentials in the request
 };
 app.options("*", cors(corsOptions));
